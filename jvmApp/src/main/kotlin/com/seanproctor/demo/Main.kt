@@ -17,7 +17,7 @@ fun main() {
     val dataModule = JvmDataModule::class.create(commonModule)
     val domainModule = DomainModule::class.create(commonModule, dataModule)
     val viewModule: ViewModule = JvmViewModule::class.create(commonModule, dataModule, domainModule)
-    val viewModel = viewModule.mainViewModelFactory.create()
+    val viewModel = viewModule.mainViewModel
     runBlocking {
         viewModel.networkStatus
             .collect { println("Network status: $it") }

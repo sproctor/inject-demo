@@ -11,23 +11,7 @@ repositories {
 }
 
 kotlin {
-    jvm {
-        withJava()
-        testRuns.named("test") {
-            executionTask.configure {
-                useJUnitPlatform()
-            }
-        }
-    }
-    js {
-        browser {
-            commonWebpackConfig(Action {
-                cssSupport {
-                    enabled.set(true)
-                }
-            })
-        }
-    }
+    jvm()
     
     sourceSets {
         val commonMain by getting {
@@ -36,15 +20,6 @@ kotlin {
                 implementation("me.tatarka.inject:kotlin-inject-runtime:0.6.3")
             }
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
-        val jvmMain by getting
-        val jvmTest by getting
-        val jsMain by getting
-        val jsTest by getting
     }
 
     jvmToolchain(17)
